@@ -1,0 +1,8 @@
+<section class="section">
+    <h3>account</h3>
+    <div class="container">
+        @for (item of account; track item.id) {
+        <app-card-account [item]="item"></app-card-account>
+        }
+    </div>
+</section>

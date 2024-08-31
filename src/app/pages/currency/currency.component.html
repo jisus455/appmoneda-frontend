@@ -1,0 +1,8 @@
+<section class="section">
+    <h3>currency</h3>
+    <div class="container">
+        @for (item of currency; track item.id) {
+            <app-card-currency [item]="item"></app-card-currency>
+        }
+    </div>
+</section>
