@@ -1,1 +1,32 @@
-<p>register works!</p>
+<section class="section-form">
+    <form class="container-form">
+        <h3>Register</h3>
+
+        <mat-label>User</mat-label>
+        <mat-form-field>
+            <input type="text" [(ngModel)]="client.user" name="user" matInput required>
+        </mat-form-field>
+
+        <mat-label>Email</mat-label>
+        <mat-form-field>
+            <input type="email" [(ngModel)]="client.email" name="email" matInput required>
+        </mat-form-field>
+
+        <mat-label>Password</mat-label>
+        <mat-form-field>
+            <input type="password" [(ngModel)]="client.password" name="password" matInput required>
+        </mat-form-field>
+
+        <mat-label>Country</mat-label>
+        <mat-form-field>
+            <mat-label>Select an option</mat-label>
+            <mat-select [(ngModel)]="client.country" name="country">
+                <mat-option value="Argentina">Argentina</mat-option>
+                <mat-option value="Brazil">Brazil</mat-option>
+                <mat-option value="United States">United States</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <button (click)="register()" mat-flat-button>Register</button>
+    </form>
+</section>
