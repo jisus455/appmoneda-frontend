@@ -1,17 +1,20 @@
 <section class="section-form">
     <div class="container-form">
-        <h3>Sign in</h3>
+        <h3>Sign in</h3>    
         
-        <div class="form-group">
-            <label class="form-label">Username</label>
-            <input class="form-input" type="text" required>
-        </div>
+        <form class="form">
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input type="email" matInput>
+              </mat-form-field>
 
-        <div class="form-group">
-            <label class="form-label">Password</label>
-            <input class="form-input" type="password" required>
-        </div>
+              <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input type="password" matInput>
+              </mat-form-field>
 
-        <button class="form-button" type="button">Sign in</button>
+              <button mat-flat-button>Sign in</button>
+        </form>
+
     </div>
 </section>
