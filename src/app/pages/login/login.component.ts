@@ -1,35 +1,34 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
-
-import { FormsModule } from '@angular/forms';
+import { MatProgressBar } from '@angular/material/progress-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, FormsModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatProgressBar],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
 
-  client:Client = {
-    email: '',
-    password: ''
-  }
+  connecting:boolean = false
 
-  constructor() {}
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+  })
+
+  constructor(private router: Router) {}
 
   login() {
-    console.log(this.client.email)
-    console.log(this.client.password)
+    console.log(this.loginForm.value)
+    this.connecting = true
+    //this.router.navigateByUrl('home')
   }
 }
 
-
-interface Client {
-  email:string,
-  password:string,
-}

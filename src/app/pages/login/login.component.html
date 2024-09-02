@@ -1,17 +1,21 @@
+@if (connecting) {
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+
 <section class="section-form">
-  <form class="container-form">
+  <form class="container-form" [formGroup]="loginForm" (ngSubmit)="login()">
     <h3>Sign in</h3>
 
     <mat-label>Email</mat-label>
     <mat-form-field>
-      <input type="email" [(ngModel)]="client.email" name="email" matInput required>
+      <input id="email" type="email" formControlName="email" matInput>
     </mat-form-field>
 
     <mat-label>Password</mat-label>
     <mat-form-field>
-      <input type="password" [(ngModel)]="client.password" name="password" matInput required>
+      <input id="password" type="password" formControlName="password" matInput>
     </mat-form-field>
 
-    <button (click)="login()" mat-flat-button>Sign in</button>
+    <button type="submit" mat-flat-button>Sign in</button>
   </form>
 </section>

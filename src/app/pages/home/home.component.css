@@ -1,4 +1,29 @@
-.navbar {
+.example-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+    
+  .example-sidenav-container {
+    flex: 1;
+  }
+  
+
+
+
+/* .example-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  } */
+
+/* .navbar {
     background-color: gray;
     display: flex;
     align-items: center;
@@ -28,4 +53,4 @@
     width: 20em;
     height: 10em;
     text-align: center;
-}
+} */

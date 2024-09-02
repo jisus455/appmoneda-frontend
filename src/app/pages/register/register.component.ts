@@ -1,41 +1,34 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
-
-import { FormsModule } from '@angular/forms';
+import { MatProgressBar } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, MatSelectModule, FormsModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatSelectModule, MatProgressBar],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
 
-  client:Client = {
-    user: '',
-    email: '',
-    password: '',
-    country: ''
-  }
+  connecting:boolean = false
+  registerForm = new FormGroup({
+    user: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+    country: new FormControl('', [Validators.required]),
+  })
 
   constructor() {}
 
   register() {
-    console.log(this.client.user)
-    console.log(this.client.email)
-    console.log(this.client.password)
-    console.log(this.client.country)
+    console.log(this.registerForm.value)
+    this.connecting = true
   }
 }
 
-interface Client {
-  user:string,
-  email:string,
-  password:string,
-  country:string
-}
