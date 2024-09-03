@@ -1,10 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import { MatIcon } from '@angular/material/icon';
 
-import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, OnDestroy, inject} from '@angular/core';
+import { MatIcon } from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSidenav, MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -13,27 +11,37 @@ import { MatSelectModule } from '@angular/material/select';
 
 import { HomeService } from '../../services/home/home.service';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
+import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatSidenavModule, MatListModule, MatIcon, MatFormFieldModule, MatSelectModule, MatMenu, MatMenuTrigger, MatMenuItem],
+  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatSidenavModule, MatListModule, MatIcon, MatFormFieldModule, MatSelectModule, MatMenu, MatMenuTrigger, MatMenuItem, MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle, MatCardActions, MatCardContent, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
 
-  // @ViewChild('sidenav') sidenav: MatSidenav | any;
+  @ViewChild('snav') sidenav: MatSidenav | any;
 
   currency: any
   account: any
   operation: any
   client: any
 
-  // constructor(private homeService: HomeService) { }
+  constructor(private homeService: HomeService, private router:Router) { }
 
+  widthSide:string = '75px'
+
+  collapsed() {
+    this.widthSide == '75px' ? this.widthSide = '280px' : this.widthSide = '75px'
+  }
+
+  active:any
   ngOnInit(): void {
-
+    this.active = this.router.url
+    
     // this.homeService.getCurrency().subscribe(data => {
     //   this.currency = data
     // })

@@ -1,56 +1,52 @@
-.example-container {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+.container {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    grid-template-rows: 60px 1fr;
+    grid-template-areas: 
+      "navbar navbar"
+      "sidenav sidenav";
+    min-height: 100%;
   }
-    
-  .example-sidenav-container {
-    flex: 1;
+
+  .navbar {
+    grid-area: navbar;
   }
-  
 
-
-
-/* .example-container {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  } */
-
-/* .navbar {
-    background-color: gray;
+  .navbar-items {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-left: 15px;
+    width: 100%;
+  }
+
+  .sidenav-container {
+    grid-area: sidenav;
+    background-color: black;
+  }
+
+  .sidenav-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .sidenav {
+    padding: 10px
+  }
+
+  .sidenav-content {
+    padding: 20px;
+  }
+  
+  .container-card {
+    padding-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(22em, 1fr));
+    grid-template-rows: auto;
+    gap: 2em;
 }
 
-.navbar-start, .navbar-end {
-    margin-left: 10px;
-}
-
-.link {
-    margin: 5px;
-    color: whitesmoke;
-    text-transform: uppercase;
-    text-decoration: none;
-}
-
-.link:hover {
-    color: wheat;
-}
-
-
-.card-client {
-    border-style: solid;
-    border-color: green;
-    width: 20em;
-    height: 10em;
-    text-align: center;
-} */
+.card {}

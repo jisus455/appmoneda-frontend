@@ -19,7 +19,7 @@ export class RegisterComponent {
   connecting:boolean = false
   registerForm = new FormGroup({
     user: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
     country: new FormControl('', [Validators.required]),
   })
@@ -27,8 +27,10 @@ export class RegisterComponent {
   constructor() {}
 
   register() {
-    console.log(this.registerForm.value)
-    this.connecting = true
+    if(this.registerForm.valid) {
+      console.log(this.registerForm.value)
+      this.connecting = true
+    }
   }
 }
 
