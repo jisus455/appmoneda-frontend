@@ -1,0 +1,43 @@
+<mat-accordion class="accordion" multi>
+    <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Active accounts</mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="container-card">
+            @for (item of account; track item.id) {
+            <app-card-account [item]="item"></app-card-account>
+            }
+        </div>
+
+    </mat-expansion-panel>
+    <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Popular currencies</mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="container-chip">
+            @for (item of currency; track item.id) {
+            <app-card-currency [item]="item"></app-card-currency>
+            }
+        </div>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Last operations</mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="container-table">
+            <app-card-operation [operation]="operation"></app-card-operation>
+        </div>
+
+    </mat-expansion-panel>
+</mat-accordion>

@@ -1,0 +1,42 @@
+.container {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    grid-template-rows: 60px 1fr;
+    grid-template-areas: 
+      "navbar navbar"
+      "sidebar sidebar";
+    min-height: 100%;
+  }
+
+  .navbar {
+    grid-area: navbar;
+  }
+
+  .navbar-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 15px;
+    width: 100%;
+  }
+
+  .sidebar-container {
+    grid-area: sidebar;
+    background-color: black;
+  }
+
+  .sidebar {
+    padding: 10px
+  }
+
+  .sidebar-content {
+    padding: 20px;
+  }
+  
+  .sidebar-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}

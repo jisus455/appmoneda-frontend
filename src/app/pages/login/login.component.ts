@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
+  @Input() connected:boolean = false
   connecting:boolean = false
 
   loginForm = new FormGroup({

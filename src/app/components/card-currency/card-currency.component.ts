@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
 
+import { MatChipsModule } from '@angular/material/chips';
+
 @Component({
   selector: 'app-card-currency',
   standalone: true,
-  imports: [],
+  imports: [MatChipsModule],
   templateUrl: './card-currency.component.html',
   styleUrl: './card-currency.component.css'
 })

@@ -1,2 +1,50 @@
-<!-- <h1>AppComponent</h1> -->
-<router-outlet></router-outlet>
+@if(connected) {
+<div class="container">
+    <mat-toolbar class="navbar">
+        <button mat-icon-button (click)="collapsed()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <div class="navbar-items">
+            <h1 class="app-name">App</h1>
+            <button mat-raised-button [matMenuTriggerFor]="menu"><mat-icon>arrow_drop_down</mat-icon>Jesus</button>
+            <mat-menu #menu="matMenu">
+                <a mat-menu-item (click)="disconnected()">Personal data</a>
+                <a mat-menu-item (click)="disconnected()">Sign out</a>
+            </mat-menu>
+        </div>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="sidebar-container">
+        <mat-sidenav mode="side" opened class="sidebar" [style.width]="widthSide">
+            <mat-nav-list class="sidebar-items">
+                <a mat-list-item href="dashboard" [activated]="true">
+                    <mat-icon matListItemIcon>dashboard</mat-icon>
+                    <span>Dashboard</span>
+                </a>
+                <a mat-list-item href="currency">
+                    <mat-icon matListItemIcon>bar_chart</mat-icon>
+                    <span>Currency</span>
+                </a>
+                <a mat-list-item href="account">
+                    <mat-icon matListItemIcon>credit_card</mat-icon>
+                    <span>Account</span>
+                </a>
+                <a mat-list-item href="operation">
+                    <mat-icon matListItemIcon>description</mat-icon>
+                    <span>Operation</span>
+                </a>
+                <a mat-list-item>
+                    <mat-icon matListItemIcon>help</mat-icon>
+                    <span>Ayuda</span>
+                </a>
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content class="sidebar-content">
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
+} @else {
+<app-login></app-login>
+}

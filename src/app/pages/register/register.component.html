@@ -6,24 +6,23 @@
     <form class="container-form" [formGroup]="registerForm" (submit)="register()">
         <h3>Register</h3>
 
-        <mat-label>User</mat-label>
         <mat-form-field>
-            <input type="text" formControlName="user" matInput required>
+            <mat-label>User</mat-label>
+            <input type="text" formControlName="user" matInput>
         </mat-form-field>
 
+        <mat-form-field>
         <mat-label>Email</mat-label>
-        <mat-form-field>
-            <input type="email" formControlName="email" matInput required>
+            <input type="email" formControlName="email" matInput>
         </mat-form-field>
 
-        <mat-label>Password</mat-label>
         <mat-form-field>
-            <input type="password" formControlName="password" matInput required>
+            <mat-label>Password</mat-label>
+            <input type="password" formControlName="password" matInput>
         </mat-form-field>
 
-        <mat-label>Country</mat-label>
         <mat-form-field>
-            <mat-label>Select an option</mat-label>
+            <mat-label>Country</mat-label>
             <mat-select formControlName="country">
                 <mat-option value="Argentina">Argentina</mat-option>
                 <mat-option value="Brazil">Brazil</mat-option>
