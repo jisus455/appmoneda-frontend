@@ -8,8 +8,8 @@
             <h1 class="app-name">App</h1>
             <button mat-raised-button [matMenuTriggerFor]="menu"><mat-icon>arrow_drop_down</mat-icon>Jesus</button>
             <mat-menu #menu="matMenu">
-                <a mat-menu-item (click)="disconnected()">Personal data</a>
-                <a mat-menu-item (click)="disconnected()">Sign out</a>
+                <a mat-menu-item (click)="disconnected()"><mat-icon>person</mat-icon>Profile</a>
+                <a mat-menu-item (click)="disconnected()"><mat-icon>logout</mat-icon>Sign out</a>
             </mat-menu>
         </div>
     </mat-toolbar>

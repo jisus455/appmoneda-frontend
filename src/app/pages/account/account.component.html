@@ -1,5 +1,23 @@
 <section class="section">
-    <h3>account</h3>
+
+    <div class="header">
+            <button mat-flat-button>
+                <mat-icon>add_circle</mat-icon>
+                Add account
+            </button>
+            <button mat-flat-button>
+                <mat-icon>delete</mat-icon>
+                Remove account
+            </button>
+
+        <!-- <mat-form-field>
+            <input matInput placeholder="Search account">
+            <button mat-icon-button matIconSuffix>
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field> -->
+    </div>
+
     <div class="container">
         @for (item of account; track item.id) {
         <app-card-account [item]="item"></app-card-account>

@@ -6,6 +6,20 @@
     <img src={{item.imagen}} alt="imagen">
 </div> -->
 
-<mat-chip-set>
-    <mat-chip>{{item.nombre}}</mat-chip>
-</mat-chip-set>
+<mat-card class="card" appearance="outlined">
+    <img mat-card-md-image [src]="item.imagen" class="card-image"> 
+    <mat-card-header>
+        <mat-card-title>{{item.nombre}}</mat-card-title>
+        <mat-card-subtitle class="card-subtitle">{{item.pais}}</mat-card-subtitle>
+      </mat-card-header>
+    <mat-card-content>
+        <mat-chip-set>
+            <mat-chip>{{item.codigo}}</mat-chip>
+            <mat-chip>{{item.estado}}</mat-chip>
+        </mat-chip-set>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button>Buy currency</button>
+        <button mat-button>Request quote</button>
+    </mat-card-actions>
+</mat-card>

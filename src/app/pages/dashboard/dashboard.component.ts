@@ -3,20 +3,33 @@ import { Router } from '@angular/router';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { CardCurrencyComponent } from "../../components/card-currency/card-currency.component";
 import { CardAccountComponent } from '../../components/card-account/card-account.component';
+import { CardOperationComponent } from '../../components/card-operation/card-operation.component';
 
 import { HomeService } from '../../services/home/home.service';
-import { CardOperationComponent } from '../../components/card-operation/card-operation.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CardAccountComponent, MatCardModule, CardCurrencyComponent, MatButtonModule, MatAccordion, MatExpansionModule, MatIconModule, CardOperationComponent],
+  imports: [
+    CardAccountComponent, 
+    MatCardModule, 
+    CardCurrencyComponent, 
+    MatButtonModule, 
+    MatAccordion, 
+    MatExpansionModule, 
+    MatIconModule, 
+    CardOperationComponent, 
+    MatTabsModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

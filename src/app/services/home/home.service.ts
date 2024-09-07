@@ -14,6 +14,10 @@ export class HomeService {
     return this.http.get(this.url+'currency')
   }
 
+  getSearchCurrency(name:string) {
+    return this.http.get(this.url+'currency?search='+name)
+  }
+
   getAccount(clienteId:string) {
     return this.http.get(this.url+'account?clienteId='+clienteId)
   }

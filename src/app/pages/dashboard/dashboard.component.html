@@ -6,11 +6,17 @@
             </mat-panel-description>
         </mat-expansion-panel-header>
 
+        @if (account) {
         <div class="container-card">
             @for (item of account; track item.id) {
             <app-card-account [item]="item"></app-card-account>
             }
         </div>
+        }
+
+        @else {
+        <mat-spinner></mat-spinner>
+        }
 
     </mat-expansion-panel>
     <mat-expansion-panel expanded>
@@ -20,11 +26,19 @@
             </mat-panel-description>
         </mat-expansion-panel-header>
 
+        @if(currency) {
         <div class="container-chip">
-            @for (item of currency; track item.id) {
-            <app-card-currency [item]="item"></app-card-currency>
-            }
+            <mat-tab-group>
+                @for (tab of currency; track tab) {
+                <mat-tab [label]="tab.nombre"></mat-tab>
+                }
+            </mat-tab-group>
         </div>
+        }
+
+        @else {
+        <mat-spinner></mat-spinner>
+        }
 
     </mat-expansion-panel>
 
@@ -35,9 +49,15 @@
             </mat-panel-description>
         </mat-expansion-panel-header>
 
+        @if(operation) {
         <div class="container-table">
             <app-card-operation [operation]="operation"></app-card-operation>
         </div>
+        }
+
+        @else {
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        }
 
     </mat-expansion-panel>
 </mat-accordion>
