@@ -1,7 +1,8 @@
 .container-card {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));
+    grid-template-rows: auto;
+    gap: 2em;
 }
 
 .container-chip {

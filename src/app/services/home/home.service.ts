@@ -18,8 +18,19 @@ export class HomeService {
     return this.http.get(this.url+'currency?search='+name)
   }
 
-  getAccount(clienteId:string) {
-    return this.http.get(this.url+'account?clienteId='+clienteId)
+  getAccount(clientId:string) {
+    return this.http.get(this.url+'account?clienteId='+clientId)
+  }
+
+  createAccount(clientId:string, accountId:string) {
+    return this.http.post(this.url+'account/', {
+      'clienteId':clientId, 
+      'tipoId':accountId
+    })
+  }
+
+  deleteAccount(clientId:string, accountId:string) {
+    return this.http.delete(this.url+'account/?clienteId='+clientId+'&tipoId='+accountId) 
   }
 
   getOperation(ctaOrg:string, ctaDst:string) {

@@ -1,40 +1,36 @@
 <section class="section">
-    <!-- <h3>currency</h3> -->
-    <!-- <mat-form-field>
-        <input matInput placeholder="Search currency" [(ngModel)]="name" (keydown)="search()">
-        <button mat-icon-button matIconSuffix (click)="search()">
-            <mat-icon>search</mat-icon>
-        </button>
-    </mat-form-field> -->
 
-    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-        <mat-tab label="View All">
+    <div class="header">
+        <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <mat-select>
+                <mat-option value="Argentina">Argentina</mat-option>
+                <mat-option value="Brazil">Brazil</mat-option>
+                <mat-option value="United States">United States</mat-option>
+            </mat-select>
+        </mat-form-field>
 
-            @if(currency) {
-            <div class="container">
-                @for (item of currency; track item) {
-                <app-card-currency [item]="item"></app-card-currency>
-                }
-            </div>
-            }
+        <mat-form-field>
+            <input matInput placeholder="Search currency" [(ngModel)]="name" (keydown)="search()">
+            <button mat-icon-button matIconSuffix (click)="search()">
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
 
-            @else {
-            <div class="container">
-                <mat-spinner></mat-spinner>
-            </div>
-            }
-        </mat-tab>
+    @if(currency) {
+    <div class="container">
+        @for (item of currency; track item) {
+        <app-card-currency [item]="item"></app-card-currency>
+        }
+    </div>
+    }
 
-        <mat-tab label="Popular">
+    @else {
+    <div class="loading">
+        <mat-spinner></mat-spinner>
+        <p>Loading currency</p>
+    </div>
+    }
 
-        </mat-tab>
-
-        <mat-tab label="Lowest Price">
-            Content 2
-        </mat-tab>
-
-        <mat-tab label="Highest Price">
-
-        </mat-tab>
-    </mat-tab-group>
 </section>

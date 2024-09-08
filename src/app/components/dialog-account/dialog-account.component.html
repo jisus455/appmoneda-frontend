@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>{{action}} account</h2>
+<mat-dialog-content style="display: flex; flex-direction: column;">
+
+  <mat-form-field>
+    <mat-label>Type account</mat-label>
+    <mat-select [(ngModel)]="selectAccount" name="Type">
+      @if(accounts) {
+        @for (item of accounts; track item) {
+          <mat-option [value]="item">{{item.tipo_id}}</mat-option>
+        }
+      } @else {
+        @for (item of currencies; track item) {
+          <mat-option [value]="item">{{item.nombre}}</mat-option>
+        }
+      }
+    </mat-select>
+  </mat-form-field><br>
+
+    <mat-form-field>
+      <mat-label>Balance account</mat-label>
+      <input matInput [value]="selectAccount?.saldo || balance" disabled>
+    </mat-form-field>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+  <button mat-button mat-dialog-close (click)="pushButton()">{{action}}</button>
+</mat-dialog-actions>
