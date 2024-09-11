@@ -1,5 +1,8 @@
 .section {
     margin: 10px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-row: auto;
 }
 
 .container {
@@ -7,4 +10,12 @@
     grid-template-columns: repeat(auto-fit, minmax(22em, 1fr));
     grid-template-rows: auto;
     gap: 2em;
+}
+
+.select {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2em;
+    margin-top: 20px;
 }

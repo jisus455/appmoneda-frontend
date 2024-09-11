@@ -43,7 +43,11 @@ export class DialogAccountComponent implements OnInit {
 
   pushButton() {
     if(this.action == 'Create') {
-      this.homeService.createAccount(this.clientId, this.selectAccount.id).subscribe((data: any) => {
+      let body = {
+      'clienteId':this.clientId, 
+      'tipoId':this.selectAccount.id
+      }
+      this.homeService.addAccount(body).subscribe((data: any) => {
         this.result = data
       })
     }

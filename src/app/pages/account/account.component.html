@@ -14,7 +14,7 @@
     @if(accounts) {
     <div class="container">
         @for (item of accounts; track item.id) {
-        <app-card-account [item]="item"></app-card-account>
+        <app-card-account [item]="item" (newItemEvent)="selectAccount($event)"></app-card-account>
         }
     </div>
     }
@@ -27,13 +27,32 @@
     }
 
 
-    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-        <mat-tab label="Operations">
-            <div style="margin-top: 10px;">
-                <app-card-operation [operation]="operation"></app-card-operation>
-            </div>
-        </mat-tab>
-    </mat-tab-group>
+    <mat-accordion class="accordion" multi>
+        <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+                <mat-panel-title>Account movements</mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            @if(operations?.length == 0) {
+                <div class="container-card">
+                    <p>No movements were found in the account</p>
+                </div>
+            }
+
+            @else if(operations) {
+                <div class="container-card">
+                    <app-card-operation [operation]="operations"></app-card-operation>
+                </div>
+            }
+
+            @else {
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            }
+
+        </mat-expansion-panel>
+    </mat-accordion>
 
 
 

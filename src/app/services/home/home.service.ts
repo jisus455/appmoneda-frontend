@@ -18,27 +18,42 @@ export class HomeService {
     return this.http.get(this.url+'currency?search='+name)
   }
 
+  
+  
   getAccount(clientId:string) {
     return this.http.get(this.url+'account?clienteId='+clientId)
   }
 
-  createAccount(clientId:string, accountId:string) {
-    return this.http.post(this.url+'account/', {
-      'clienteId':clientId, 
-      'tipoId':accountId
-    })
+  addAccount(body:any) {
+    return this.http.post(this.url+'account/', body)
   }
 
   deleteAccount(clientId:string, accountId:string) {
     return this.http.delete(this.url+'account/?clienteId='+clientId+'&tipoId='+accountId) 
   }
-
+  
+  
+  
   getOperation(ctaOrg:string, ctaDst:string) {
     return this.http.get(this.url+'operation?ctaOrg='+ctaOrg+'&ctaDst='+ctaDst)
   }
 
-  getClient() {
-    return this.http.get(this.url+'client')
+  getLastOperation(ctaOrg:string, ctaDst:string, date:string) {
+    return this.http.get(this.url+'operation?ctaOrg='+ctaOrg+'&ctaDst='+ctaDst+'&filter='+date)
+  }
+
+  addOperation(body:any) {
+    return this.http.post(this.url+'operation/', body)
+  }
+
+
+
+  registerClient(body:any) {
+    return this.http.post(this.url+'client', body)
+  }
+
+  loginClient(body:any) {
+    return this.http.post(this.url+'client', body)
   }
 
 }

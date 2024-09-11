@@ -1,6 +1,134 @@
 <section class="section">
-    <h3>operation</h3>
-    <div class="container">
-        <app-card-operation [operation]="operation"></app-card-operation>
-    </div>
+
+  <mat-stepper linear orientation="vertical" #stepper>
+    <mat-step [stepControl]="formType" [editable]="formType.enabled">
+      <form [formGroup]="formType">
+        <ng-template matStepLabel>Select type</ng-template>
+        <mat-form-field>
+          <mat-label>Select an option</mat-label>
+          <mat-select formControlName="type">
+            <mat-option value="Deposit">Deposit</mat-option>
+            <mat-option value="Extract">Extract</mat-option>
+            <mat-option value="Buy">Buy</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="formAccount" [editable]="formAccount.enabled">
+      <form [formGroup]="formAccount">
+        <ng-template matStepLabel>Select account</ng-template>
+
+        <div class="container">
+          @if(origin) {
+          <app-card-account [item]="origin"></app-card-account>
+          }
+
+          @if(destination) {
+          <app-card-account [item]="destination"></app-card-account>
+          }
+        </div>
+
+        <div class="select">
+          <mat-form-field>
+            <mat-label>Account origin</mat-label>
+            <mat-select formControlName="origin" [(value)]="origin">
+              @for (item of account; track item) {
+              <mat-option [value]="item">{{item.tipo_id}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Account destination</mat-label>
+            <mat-select formControlName="destination" [(value)]="destination">
+              @for (item of account; track item) {
+              <mat-option [value]="item">{{item.tipo_id}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="formValue" [editable]="formValue.enabled">
+      <form [formGroup]="formValue">
+        <ng-template matStepLabel>Select value</ng-template>
+
+        <mat-form-field>
+          <mat-label>Value</mat-label>
+          <input matInput formControlName="value">
+        </mat-form-field>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Confirm</ng-template>
+
+      <p>Verify that the data entered is correct</p>
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+
+        @if(!resetActive) {
+        <button mat-button (click)="confirm()">Confirm</button>
+        } 
+        
+        @if(resetActive) {
+        <button mat-button (click)="stepper.reset()">Reset</button>
+        } 
+      </div>
+    </mat-step>
+  </mat-stepper>
+
+  <div>
+    <mat-list role="list">
+      <mat-list-item role="listitem">
+        @if(this.formType.value.type) {
+        <mat-icon matListItemIcon>check_circle</mat-icon>
+        } @else {
+        <mat-icon matListItemIcon>cancel_circle</mat-icon>
+        }
+        <p>{{formType.get('type').value == '' ? 'Type operation' : formType.value.type}}</p>
+      </mat-list-item>
+
+      <mat-list-item role="listitem">
+        @if(origin?.id) {
+        <mat-icon matListItemIcon>check_circle</mat-icon>
+        } @else {
+        <mat-icon matListItemIcon>cancel_circle</mat-icon>
+        }
+        <p>{{origin == null ? 'Account origin' : origin?.id}}</p>
+      </mat-list-item>
+
+      <mat-list-item role="listitem">
+        @if(destination?.id) {
+        <mat-icon matListItemIcon>check_circle</mat-icon>
+        } @else {
+        <mat-icon matListItemIcon>cancel_circle</mat-icon>
+        }
+        <p>{{destination == null ? 'Account destination' : destination?.id}}</p>
+      </mat-list-item>
+
+      <mat-list-item role="listitem">
+        @if(this.formValue.value.value) {
+        <mat-icon matListItemIcon>check_circle</mat-icon>
+        } @else {
+        <mat-icon matListItemIcon>cancel_circle</mat-icon>
+        }
+        <p>{{formValue.get('value').value == '' ? 'Value' : formValue.value.value}}</p>
+      </mat-list-item>
+    </mat-list>
+  </div>
+
 </section>

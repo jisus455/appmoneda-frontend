@@ -59,10 +59,5 @@ export class DashboardComponent {
       console.log(data)
     })
 
-    this.homeService.getClient().subscribe(data => {
-      this.client = data
-      console.log(data)
-    })
-
   }
 }

@@ -13,22 +13,26 @@ import { Router } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CardOperationComponent } from '../../components/card-operation/card-operation.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-account',
   standalone: true,
-  imports: [CardAccountComponent, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatDialogModule, MatProgressSpinnerModule, CardOperationComponent, MatTabsModule],
+  imports: [CardAccountComponent, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatDialogModule, MatProgressSpinnerModule, CardOperationComponent, MatExpansionModule, MatProgressBarModule],
   templateUrl: './account.component.html',
   styleUrl: './account.component.css'
 })
 export class AccountComponent {
 
   accounts: any
-  currencies:any
-  readonly dialog = inject(MatDialog)
-operation: any;
+  currencies: any
+  operations: any
 
-  constructor(private homeService: HomeService, private router:Router) { }
+
+  readonly dialog = inject(MatDialog)
+
+  constructor(private homeService: HomeService, private router: Router) { }
 
   ngOnInit(): void {
     this.homeService.getAccount("2").subscribe(data => {
@@ -37,6 +41,17 @@ operation: any;
 
     this.homeService.getCurrency().subscribe(data => {
       this.currencies = data
+    })
+
+    this.homeService.getOperation("11", "11").subscribe(data => {
+      this.operations = data
+    })
+  }
+
+  selectAccount(account: string) {
+    this.homeService.getOperation(account, account).subscribe(data => {
+      this.operations = data
+      console.log(this.operations)
     })
   }
 
@@ -69,5 +84,5 @@ operation: any;
       })
     })
   }
-  
+
 }
