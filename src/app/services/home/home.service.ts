@@ -42,8 +42,8 @@ export class HomeService {
     return this.http.get(this.url+'operation?ctaOrg='+ctaOrg+'&ctaDst='+ctaDst)
   }
 
-  getLastOperation(ctaOrg:string, ctaDst:string, date:string) {
-    return this.http.get(this.url+'operation?ctaOrg='+ctaOrg+'&ctaDst='+ctaDst+'&filter='+date)
+  getLastOperation(ctaOrg:string, ctaDst:string, limit:string) {
+    return this.http.get(this.url+'operation?ctaOrg='+ctaOrg+'&ctaDst='+ctaDst+'&limit='+limit)
   }
 
   addOperation(body:any) {

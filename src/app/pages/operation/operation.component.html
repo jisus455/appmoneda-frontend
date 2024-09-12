@@ -36,7 +36,7 @@
             <mat-label>Account origin</mat-label>
             <mat-select formControlName="origin" [(value)]="origin">
               @for (item of account; track item) {
-              <mat-option [value]="item">{{item.tipo_id}}</mat-option>
+              <mat-option [value]="item">{{item.nombre}}</mat-option>
               }
             </mat-select>
           </mat-form-field>
@@ -45,7 +45,7 @@
             <mat-label>Account destination</mat-label>
             <mat-select formControlName="destination" [(value)]="destination">
               @for (item of account; track item) {
-              <mat-option [value]="item">{{item.tipo_id}}</mat-option>
+              <mat-option [value]="item">{{item.nombre}}</mat-option>
               }
             </mat-select>
           </mat-form-field>

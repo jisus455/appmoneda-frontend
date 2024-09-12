@@ -46,15 +46,13 @@ export class DashboardComponent {
     
     this.homeService.getCurrency().subscribe(data => {
       this.currency = data
-      console.log(data)
     })
 
     this.homeService.getAccount("2").subscribe(data => {
       this.account = data
-      console.log(data)
     })
 
-    this.homeService.getOperation("2", "3").subscribe(data => {
+    this.homeService.getLastOperation("11", "11", "5").subscribe(data => {
       this.operation = data
       console.log(data)
     })
