@@ -22,6 +22,7 @@ export class CurrencyComponent implements OnInit {
 
   currency: any
   name: string = ''
+  option: string = ''
 
   constructor(private homeService: HomeService) { }
 
@@ -33,7 +34,12 @@ export class CurrencyComponent implements OnInit {
 
   search() {
     this.homeService.getSearchCurrency(this.name).subscribe((data) => {
-      console.log(data)
+      this.currency = data
+    })
+  }
+
+  order() {
+    this.homeService.getOrderCurrency(this.option).subscribe((data) => {
       this.currency = data
     })
   }

@@ -2,11 +2,10 @@
 
     <div class="header">
         <mat-form-field>
-            <mat-label>Filter</mat-label>
-            <mat-select>
-                <mat-option value="Argentina">Argentina</mat-option>
-                <mat-option value="Brazil">Brazil</mat-option>
-                <mat-option value="United States">United States</mat-option>
+            <mat-label>Order</mat-label>
+            <mat-select [(ngModel)]="option" (selectionChange)="order()">
+                <mat-option value="OrderByNameASC">OrderByNameASC</mat-option>
+                <mat-option value="OrderByNameDESC">OrderByNameDESC</mat-option>
             </mat-select>
         </mat-form-field>
 
@@ -20,7 +19,7 @@
 
     @if(currency) {
     <div class="container">
-        @for (item of currency; track item) {
+        @for (item of currency; track item.id) {
         <app-card-currency [item]="item"></app-card-currency>
         }
     </div>

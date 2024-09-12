@@ -6,7 +6,7 @@
     <mat-select [(ngModel)]="selectAccount" name="Type">
       @if(accounts) {
         @for (item of accounts; track item) {
-          <mat-option [value]="item">{{item.tipo_id}}</mat-option>
+          <mat-option [value]="item">{{item.nombre}}</mat-option>
         }
       } @else {
         @for (item of currencies; track item) {
