@@ -8,13 +8,15 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 import { CardAccountComponent } from '../../components/card-account/card-account.component';
 import { DialogAccountComponent } from '../../components/dialog-account/dialog-account.component';
-import { HomeService } from '../../services/home/home.service';
 import { Router } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CardOperationComponent } from '../../components/card-operation/card-operation.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { AccountService } from '../../services/account/account.service';
+import { CurrencyService } from '../../services/currency/currency.service';
+import { OperationService } from '../../services/operation/operation.service';
 
 @Component({
   selector: 'app-account',
@@ -29,29 +31,30 @@ export class AccountComponent {
   currencies: any
   operations: any
 
-
   readonly dialog = inject(MatDialog)
 
-  constructor(private homeService: HomeService, private router: Router) { }
+  constructor(private accountService: AccountService,
+              private currencyService: CurrencyService,
+              private operationService: OperationService,
+              private router: Router) { }
 
   ngOnInit(): void {
-    this.homeService.getAccount("2").subscribe(data => {
+    this.accountService.getAccount("2").subscribe(data => {
       this.accounts = data
     })
 
-    this.homeService.getCurrency().subscribe(data => {
+    this.currencyService.getCurrency().subscribe(data => {
       this.currencies = data
     })
 
-    this.homeService.getOperation("11", "11").subscribe(data => {
+    this.operationService.getOperation("11", "11").subscribe(data => {
       this.operations = data
     })
   }
 
   selectAccount(account: string) {
-    this.homeService.getOperation(account, account).subscribe(data => {
+    this.operationService.getOperation(account, account).subscribe(data => {
       this.operations = data
-      console.log(this.operations)
     })
   }
 
@@ -64,7 +67,7 @@ export class AccountComponent {
         balance: '0.00'
       }
     }).afterClosed().subscribe(() => {
-      this.homeService.getAccount("2").subscribe(data => {
+      this.accountService.getAccount("2").subscribe(data => {
         this.accounts = data
       })
     })
@@ -79,7 +82,7 @@ export class AccountComponent {
         balance: '0.00'
       }
     }).afterClosed().subscribe(() => {
-      this.homeService.getAccount("2").subscribe(data => {
+      this.accountService.getAccount("2").subscribe(data => {
         this.accounts = data
       })
     })

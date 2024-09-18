@@ -1,1 +1,18 @@
-<p>dialog-currency works!</p>
+<h2 mat-dialog-title>Buy currency</h2>
+<mat-dialog-content style="display: flex; flex-direction: column;">
+
+    <mat-form-field>
+      <mat-label>Name currency</mat-label>
+      <input matInput [(ngModel)]="name" disabled>
+    </mat-form-field><br>
+  
+      <mat-form-field>
+        <mat-label>Amount currency</mat-label>
+        <input matInput [(ngModel)]="amount">
+      </mat-form-field>
+  
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+    <button mat-button mat-dialog-close (click)="pushButton()">Buy</button>
+  </mat-dialog-actions>

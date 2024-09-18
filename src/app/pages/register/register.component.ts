@@ -6,6 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBar } from '@angular/material/progress-bar';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -24,7 +26,7 @@ export class RegisterComponent {
     country: new FormControl('', [Validators.required]),
   })
 
-  constructor() {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   register() {
     if(this.registerForm.valid) {

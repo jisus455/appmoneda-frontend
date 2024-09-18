@@ -20,7 +20,7 @@
     @if(currency) {
     <div class="container">
         @for (item of currency; track item.id) {
-        <app-card-currency [item]="item"></app-card-currency>
+        <app-card-currency [item]="item" (newItemEvent)="buy(item)"></app-card-currency>
         }
     </div>
     }

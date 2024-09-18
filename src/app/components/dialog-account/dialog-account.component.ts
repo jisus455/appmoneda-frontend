@@ -5,9 +5,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { HomeService } from '../../services/home/home.service';
 import { Router, RouterModule } from '@angular/router';
 import { routes } from '../../app.routes';
+import { AccountService } from '../../services/account/account.service';
 
 @Component({
   selector: 'app-dialog-account',
@@ -29,7 +29,7 @@ export class DialogAccountComponent implements OnInit {
 
   result:any
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private homeService:HomeService, private router:Router) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private accountService: AccountService, private router:Router) {}
   
   ngOnInit(): void {
     this.action = this.data.action
@@ -47,7 +47,7 @@ export class DialogAccountComponent implements OnInit {
       'clienteId':this.clientId, 
       'tipoId':this.selectAccount.id
       }
-      this.homeService.addAccount(body).subscribe((data: any) => {
+      this.accountService.addAccount(body).subscribe((data: any) => {
         this.result = data
       })
     }
@@ -56,7 +56,7 @@ export class DialogAccountComponent implements OnInit {
       if(this.selectAccount.saldo != '0.00') {
         alert("La cuenta posee fondos")
       } else {
-        this.homeService.deleteAccount(this.clientId, this.selectAccount.tipo_id).subscribe((data: any) => {
+        this.accountService.deleteAccount(this.selectAccount.id).subscribe((data: any) => {
           this.result = data
         })
       }

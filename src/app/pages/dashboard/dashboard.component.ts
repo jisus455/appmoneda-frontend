@@ -11,9 +11,11 @@ import { CardCurrencyComponent } from "../../components/card-currency/card-curre
 import { CardAccountComponent } from '../../components/card-account/card-account.component';
 import { CardOperationComponent } from '../../components/card-operation/card-operation.component';
 
-import { HomeService } from '../../services/home/home.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { AccountService } from '../../services/account/account.service';
+import { CurrencyService } from '../../services/currency/currency.service';
+import { OperationService } from '../../services/operation/operation.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -40,19 +42,22 @@ export class DashboardComponent {
   operation:any
   client:any
 
-  constructor(private homeService: HomeService, private router: Router) { }
+  constructor(private accountService: AccountService,
+              private currencyService: CurrencyService,
+              private operationService: OperationService,
+              private router: Router) { }
 
   ngOnInit(): void {
     
-    this.homeService.getCurrency().subscribe(data => {
+    this.currencyService.getOrderCurrency("Popular").subscribe(data => {
       this.currency = data
     })
 
-    this.homeService.getAccount("2").subscribe(data => {
+    this.accountService.getAccount("2").subscribe(data => {
       this.account = data
     })
 
-    this.homeService.getLastOperation("11", "11", "5").subscribe(data => {
+    this.operationService.getLastOperation("11", "11", "5").subscribe(data => {
       this.operation = data
       console.log(data)
     })

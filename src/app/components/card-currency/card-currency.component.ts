@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardImage, MatCardModule } from '@angular/material/card';
 
@@ -15,4 +15,9 @@ import { MatIconModule } from '@angular/material/icon';
 export class CardCurrencyComponent {
 
   @Input() item:any
+  @Output() newItemEvent = new EventEmitter<string>();
+
+  selectItem(value: string) {
+    this.newItemEvent.emit(value);
+  }
 }

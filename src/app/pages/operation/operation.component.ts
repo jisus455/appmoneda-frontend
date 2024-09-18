@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+
 import { CardOperationComponent } from '../../components/card-operation/card-operation.component';
-import { HomeService } from '../../services/home/home.service';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormControl, FormControlName, FormGroup, FormGroupName, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -10,6 +10,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { CardAccountComponent } from "../../components/card-account/card-account.component";
 import { MatListModule } from '@angular/material/list';
+import { AccountService } from '../../services/account/account.service';
+import { OperationService } from '../../services/operation/operation.service';
 
 @Component({
   selector: 'app-operation',
@@ -56,16 +58,31 @@ export class OperationComponent {
   result:any
   resetActive:boolean = false
 
-  constructor(private homeService: HomeService) { }
+  type:any
+  value:any
+
+  destin:any
+
+  constructor(private accountService: AccountService, 
+              private operationService: OperationService) { }
 
   ngOnInit(): void {
-    this.homeService.getOperation("2", "3").subscribe(data => {
+    this.operationService.getOperation("2", "3").subscribe(data => {
       this.operation = data
     })
 
-    this.homeService.getAccount("2").subscribe(data => {
+    this.accountService.getAccount("2").subscribe(data => {
       this.account = data
     })
+
+    this.type = localStorage.getItem('type') 
+    this.formType.get('type').value = this.type
+
+    this.destin = localStorage.getItem('destination')
+    this.formAccount.get('destination').value = this.destin
+
+    this.value = localStorage.getItem('amount')
+    this.formValue.get('value').value = this.value
   }
 
   confirm() {
@@ -76,7 +93,7 @@ export class OperationComponent {
       'valor': this.formValue.get('value').value
     }
 
-    this.homeService.addOperation(body).subscribe((data) => {
+    this.operationService.addOperation(body).subscribe((data) => {
       this.result = data
       document.getElementById('')
     })

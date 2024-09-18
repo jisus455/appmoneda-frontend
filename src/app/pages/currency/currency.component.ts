@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 
-import { HomeService } from '../../services/home/home.service';
 import { CardCurrencyComponent } from '../../components/card-currency/card-currency.component';
 
 import { MatInputModule } from '@angular/material/input';
@@ -10,6 +9,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogCurrencyComponent } from '../../components/dialog-currency/dialog-currency.component';
+import { Router } from '@angular/router';
+import { CurrencyService } from '../../services/currency/currency.service';
 
 @Component({
   selector: 'app-currency',
@@ -24,23 +27,35 @@ export class CurrencyComponent implements OnInit {
   name: string = ''
   option: string = ''
 
-  constructor(private homeService: HomeService) { }
+  readonly dialog = inject(MatDialog)
+
+  constructor(private currencyService: CurrencyService, private router:Router) { }
 
   ngOnInit() {
-    this.homeService.getCurrency().subscribe((data) => {
+    this.currencyService.getCurrency().subscribe((data) => {
       this.currency = data
     })
   }
 
   search() {
-    this.homeService.getSearchCurrency(this.name).subscribe((data) => {
+    this.currencyService.getSearchCurrency(this.name).subscribe((data) => {
       this.currency = data
     })
   }
 
   order() {
-    this.homeService.getOrderCurrency(this.option).subscribe((data) => {
+    this.currencyService.getOrderCurrency(this.option).subscribe((data) => {
       this.currency = data
+    })
+  }
+
+  buy(item:any) {
+    this.dialog.open(DialogCurrencyComponent, {
+      data: {
+        nombre: item.nombre
+      }
+    }).afterClosed().subscribe(() => {
+      this.router.navigateByUrl('operation')
     })
   }
 
