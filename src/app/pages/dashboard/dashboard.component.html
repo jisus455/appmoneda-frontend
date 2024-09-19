@@ -6,7 +6,7 @@
             </mat-panel-description>
         </mat-expansion-panel-header>
 
-        @if (account) {
+        @if(account){
         <div class="container-card">
             @for (item of account; track item.id) {
             <app-card-account [item]="item"></app-card-account>
@@ -15,7 +15,7 @@
         }
 
         @else {
-        <mat-spinner></mat-spinner>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
         }
 
     </mat-expansion-panel>

@@ -11,7 +11,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogCurrencyComponent } from '../../components/dialog-currency/dialog-currency.component';
-import { Router } from '@angular/router';
 import { CurrencyService } from '../../services/currency/currency.service';
 
 @Component({
@@ -27,9 +26,9 @@ export class CurrencyComponent implements OnInit {
   name: string = ''
   option: string = ''
 
-  readonly dialog = inject(MatDialog)
+  private readonly dialog = inject(MatDialog)
 
-  constructor(private currencyService: CurrencyService, private router:Router) { }
+  constructor(private currencyService: CurrencyService) { }
 
   ngOnInit() {
     this.currencyService.getCurrency().subscribe((data) => {
@@ -49,13 +48,11 @@ export class CurrencyComponent implements OnInit {
     })
   }
 
-  buy(item:any) {
+  open(item:any) {
     this.dialog.open(DialogCurrencyComponent, {
-      data: {
-        nombre: item.nombre
-      }
-    }).afterClosed().subscribe(() => {
-      this.router.navigateByUrl('operation')
+      minHeight: '550px',
+      minWidth: '1100px',
+      data: {item: item}
     })
   }
 

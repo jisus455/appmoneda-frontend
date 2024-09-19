@@ -22,7 +22,7 @@ export class CurrencyService {
     return this.http.get(this.url+'?order='+option)
   }
 
-  getHistoryCurrency() {
-    return ""
+  getHistoryCurrency(currency:string, dateStart:string, dateEnd:string) {
+    return this.http.get(this.url+'history?currency='+currency+'&start_date='+dateStart+'&end_date='+dateEnd)
   }
 }

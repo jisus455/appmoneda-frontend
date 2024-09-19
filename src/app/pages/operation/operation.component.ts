@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { CardOperationComponent } from '../../components/card-operation/card-operation.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormControl, FormControlName, FormGroup, FormGroupName, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,6 +12,8 @@ import { CardAccountComponent } from "../../components/card-account/card-account
 import { MatListModule } from '@angular/material/list';
 import { AccountService } from '../../services/account/account.service';
 import { OperationService } from '../../services/operation/operation.service';
+
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-operation',
@@ -28,7 +30,7 @@ import { OperationService } from '../../services/operation/operation.service';
     MatSelectModule,
     CardAccountComponent,
     FormsModule,
-    MatListModule
+    MatListModule,
   ],
   templateUrl: './operation.component.html',
   styleUrl: './operation.component.css'
@@ -40,6 +42,13 @@ export class OperationComponent {
 
   origin: any;
   destination: any;
+  
+  isEditable: any;
+  result:any
+  resetActive:boolean = false
+
+  type:any
+  value:any
 
   formType:any = new FormGroup({
     type: new FormControl('', Validators.required)
@@ -53,15 +62,8 @@ export class OperationComponent {
   formValue:any = new FormGroup({
     value: new FormControl('', Validators.required)
   });;
-
-  isEditable: any;
-  result:any
-  resetActive:boolean = false
-
-  type:any
-  value:any
-
-  destin:any
+  
+  private _snackBar = inject(MatSnackBar);
 
   constructor(private accountService: AccountService, 
               private operationService: OperationService) { }
@@ -74,15 +76,6 @@ export class OperationComponent {
     this.accountService.getAccount("2").subscribe(data => {
       this.account = data
     })
-
-    this.type = localStorage.getItem('type') 
-    this.formType.get('type').value = this.type
-
-    this.destin = localStorage.getItem('destination')
-    this.formAccount.get('destination').value = this.destin
-
-    this.value = localStorage.getItem('amount')
-    this.formValue.get('value').value = this.value
   }
 
   confirm() {
@@ -95,9 +88,14 @@ export class OperationComponent {
 
     this.operationService.addOperation(body).subscribe((data) => {
       this.result = data
-      document.getElementById('')
+      this.openSnackBar('Success operation', 'OK')
     })
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 5000
+    });
+  }
 
 }

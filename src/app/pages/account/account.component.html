@@ -1,5 +1,6 @@
 <section class="section">
 
+    @if(accounts) {
     <div class="header">
         <button mat-flat-button color="basic" (click)="createAccount()">
             <mat-icon>add_circle</mat-icon>
@@ -11,21 +12,11 @@
         </button>
     </div>
 
-    @if(accounts) {
     <div class="container">
         @for (item of accounts; track item.id) {
         <app-card-account [item]="item" (newItemEvent)="selectAccount($event)"></app-card-account>
         }
     </div>
-    }
-
-    @else {
-    <div class="loading">
-        <mat-spinner></mat-spinner>
-        <p>Loading account</p>
-    </div>
-    }
-
 
     <mat-accordion class="accordion" multi>
         <mat-expansion-panel expanded>
@@ -36,24 +27,26 @@
             </mat-expansion-panel-header>
 
             @if(operations?.length == 0) {
-                <div class="container-card">
-                    <p>No movements were found in the account</p>
-                </div>
+            <div class="container-card">
+                <p>No movements were found in the account</p>
+            </div>
             }
 
-            @else if(operations) {
-                <div class="container-card">
-                    <app-card-operation [operation]="operations"></app-card-operation>
-                </div>
-            }
-
-            @else {
-            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            @if(operations) {
+            <div class="container-card">
+                <app-card-operation [operation]="operations"></app-card-operation>
+            </div>
             }
 
         </mat-expansion-panel>
     </mat-accordion>
+    }
 
-
+    @else {
+    <div class="loading">
+        <mat-spinner></mat-spinner>
+        <p>Loading account</p>
+    </div>
+    }
 
 </section>

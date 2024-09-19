@@ -32,6 +32,7 @@ export class RegisterComponent {
     if(this.registerForm.valid) {
       console.log(this.registerForm.value)
       this.connecting = true
+      this.router.navigateByUrl('dashboard')
     }
   }
 }

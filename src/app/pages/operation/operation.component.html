@@ -43,9 +43,9 @@
 
           <mat-form-field>
             <mat-label>Account destination</mat-label>
-            <mat-select formControlName="destination" [(value)]="destin">
+            <mat-select formControlName="destination" [(value)]="destination">
               @for (item of account; track item) {
-              <mat-option [value]="item.nombre">{{item.nombre}}</mat-option>
+              <mat-option [value]="item">{{item.nombre}}</mat-option>
               }
             </mat-select>
           </mat-form-field>
@@ -80,53 +80,54 @@
       <div>
         <button mat-button matStepperPrevious>Back</button>
 
-        @if(!resetActive) {
-        <button mat-button (click)="confirm()">Confirm</button>
-        } 
-        
-        @if(resetActive) {
+        <button mat-button (click)="confirm()" (click)="stepper.reset()">Confirm</button>
         <button mat-button (click)="stepper.reset()">Reset</button>
-        } 
+        
       </div>
     </mat-step>
   </mat-stepper>
 
-  <div>
+  <div class="summary">
+    <h3 class="list-title">Summary</h3>
     <mat-list role="list">
       <mat-list-item role="listitem">
-        @if(this.formType.value.type) {
+        <span matListItemTitle class="list-item">Type operation</span>
+        @if(this.formType.value?.type) {
         <mat-icon matListItemIcon>check_circle</mat-icon>
         } @else {
         <mat-icon matListItemIcon>cancel_circle</mat-icon>
         }
-        <p>{{formType.get('type').value == '' ? 'Type operation' : formType.value.type}}</p>
+        <span matListItemLine>{{formType.get("type").value}}</span>
       </mat-list-item>
 
       <mat-list-item role="listitem">
-        @if(origin?.id) {
+        <span matListItemTitle class="list-item">Account origin</span>
+        @if(this.formAccount.value?.origin) {
         <mat-icon matListItemIcon>check_circle</mat-icon>
         } @else {
         <mat-icon matListItemIcon>cancel_circle</mat-icon>
         }
-        <p>{{origin == null ? 'Account origin' : origin?.id}}</p>
+        <span matListItemLine>{{formAccount.get("origin").value?.nombre}}</span>
       </mat-list-item>
 
       <mat-list-item role="listitem">
-        @if(destination?.id) {
+        <span matListItemTitle class="list-item">Account destination</span>
+        @if(this.formAccount.value?.destination) {
         <mat-icon matListItemIcon>check_circle</mat-icon>
         } @else {
         <mat-icon matListItemIcon>cancel_circle</mat-icon>
         }
-        <p>{{destination == null ? 'Account destination' : destination?.id}}</p>
+        <span matListItemLine>{{formAccount.get("destination").value?.nombre}}</span>
       </mat-list-item>
 
       <mat-list-item role="listitem">
+        <span matListItemTitle class="list-item">Value</span>
         @if(this.formValue.value.value) {
         <mat-icon matListItemIcon>check_circle</mat-icon>
         } @else {
         <mat-icon matListItemIcon>cancel_circle</mat-icon>
         }
-        <p>{{formValue.get('value').value == '' ? 'Value' : formValue.value.value}}</p>
+        <span matListItemLine>{{formValue.get('value').value}}</span>
       </mat-list-item>
     </mat-list>
   </div>

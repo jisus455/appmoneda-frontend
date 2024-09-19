@@ -1,11 +1,12 @@
 <section class="section">
 
+    @if(currency) {
     <div class="header">
         <mat-form-field>
             <mat-label>Order</mat-label>
             <mat-select [(ngModel)]="option" (selectionChange)="order()">
-                <mat-option value="OrderByNameASC">OrderByNameASC</mat-option>
-                <mat-option value="OrderByNameDESC">OrderByNameDESC</mat-option>
+                <mat-option value="OrderByNameASC">NameASC</mat-option>
+                <mat-option value="OrderByNameDESC">NameDESC</mat-option>
             </mat-select>
         </mat-form-field>
 
@@ -17,10 +18,10 @@
         </mat-form-field>
     </div>
 
-    @if(currency) {
+
     <div class="container">
         @for (item of currency; track item.id) {
-        <app-card-currency [item]="item" (newItemEvent)="buy(item)"></app-card-currency>
+        <app-card-currency [item]="item" (newItemEvent)="open(item)"></app-card-currency>
         }
     </div>
     }

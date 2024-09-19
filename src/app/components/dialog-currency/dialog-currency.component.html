@@ -1,18 +1,43 @@
-<h2 mat-dialog-title>Buy currency</h2>
-<mat-dialog-content style="display: flex; flex-direction: column;">
+<h2 mat-dialog-title>{{codigo}} ({{nombre}})</h2>
+<hr>
+<mat-dialog-content class="container">
+
+  <div class="container-input">
 
     <mat-form-field>
-      <mat-label>Name currency</mat-label>
-      <input matInput [(ngModel)]="name" disabled>
-    </mat-form-field><br>
-  
-      <mat-form-field>
-        <mat-label>Amount currency</mat-label>
-        <input matInput [(ngModel)]="amount">
-      </mat-form-field>
-  
-  </mat-dialog-content>
-  <mat-dialog-actions>
-    <button mat-button mat-dialog-close>Close</button>
-    <button mat-button mat-dialog-close (click)="pushButton()">Buy</button>
-  </mat-dialog-actions>
+      <mat-label>Filter</mat-label>
+      <mat-select [(ngModel)]="option" (selectionChange)="filter()">
+          <mat-option value="week">Last week</mat-option>
+          <mat-option value="month">Last month</mat-option>
+          <mat-option value="year">Last year</mat-option>
+          <mat-option value="personalized">Personalized</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+     <mat-form-field>
+      <mat-label>Date start</mat-label>
+      <input matInput [matDatepicker]="startDate" [(ngModel)]="dateStart" [disabled]="option != 'personalized'">
+      <mat-datepicker-toggle matIconSuffix [for]="startDate"></mat-datepicker-toggle>
+      <mat-datepicker #startDate></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Date end</mat-label>
+      <input matInput [matDatepicker]="endDate" [(ngModel)]="dateEnd" [disabled]="option != 'personalized'">
+      <mat-datepicker-toggle matIconSuffix [for]="endDate"></mat-datepicker-toggle>
+      <mat-datepicker #endDate></mat-datepicker>
+    </mat-form-field>
+
+  </div>
+
+  <ngx-charts-line-chart [view]="view" [scheme]="colorScheme"  [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis" [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel" [timeline]="timeline" [results]="multi" style="fill: #A0AABE;">
+    >
+  </ngx-charts-line-chart>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>
